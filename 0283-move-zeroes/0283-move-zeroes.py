@@ -3,12 +3,12 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        right = 0
-        for left in range(len(nums)):
-            if nums[left] != 0 and nums[right] == 0:
-                nums[right], nums[left] = nums[left], nums[right]
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != 0 and nums[slow] == 0:
+                nums[slow], nums[fast] = nums[fast], nums[slow]
 
             # wait while we find a non-zero element to
             # swap with you
-            if nums[right] != 0:
-                right += 1
+            if nums[slow] != 0:
+                slow += 1
