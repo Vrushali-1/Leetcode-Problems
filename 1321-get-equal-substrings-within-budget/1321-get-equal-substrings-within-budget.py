@@ -14,5 +14,4 @@ class Solution:
                 left += 1
             maximumLength = max(maximumLength,right - left + 1)
 
-
         return maximumLength
