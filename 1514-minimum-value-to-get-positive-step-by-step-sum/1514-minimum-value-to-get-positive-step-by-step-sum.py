@@ -4,7 +4,6 @@ class Solution:
         minimum = 0
         for i in range(len(nums)):
             addition += nums[i]
-            print(addition)
             minimum = min(minimum,addition)
         return abs(minimum) + 1
 
