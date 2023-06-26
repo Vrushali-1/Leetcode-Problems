@@ -21,8 +21,7 @@ class Solution:
             current.next = prev
             prev = current
             current = temp
-        
-        head
+
         while prev:
             maximumSum = max(maximumSum,head.val + prev.val)
             prev = prev.next
