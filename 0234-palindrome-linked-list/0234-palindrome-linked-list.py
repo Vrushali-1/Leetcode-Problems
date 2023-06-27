@@ -12,7 +12,6 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
         prev = None
-        # print('slow',slow)
         while slow:
             temp = slow.next
             slow.next = prev
@@ -20,8 +19,6 @@ class Solution:
             slow = temp
         temp = head
         temp2 = prev
-        # print('head',temp)
-        # print('prev',temp2)
         while prev:
             if head.val != prev.val:
                 return False
