@@ -19,40 +19,17 @@ class Solution:
         while current.next:
             current = current.next 
             n += 1
+        k = k % n
+        if k == 0:
+            return head
             
         current.next = head
         print(n)
         new_tail = head
-        for i in range( n-k%n - 1):
+        for i in range( n - k - 1):
             new_tail = new_tail.next
         new_head = new_tail.next
 
         new_tail.next = None
 
         return new_head if k > 0 else head
-
-        # # base cases
-        # if not head:
-        #     return None
-        # if not head.next:
-        #     return head
-        
-        # # close the linked list into the ring
-        # old_tail = head
-        # n = 1
-        # while old_tail.next:
-        #     old_tail = old_tail.next
-        #     n += 1
-        # old_tail.next = head
-        
-        # # find new tail : (n - k % n - 1)th node
-        # # and new head : (n - k % n)th node
-        # new_tail = head
-        # for i in range(n - k % n - 1):
-        #     new_tail = new_tail.next
-        # new_head = new_tail.next
-        
-        # # break the ring
-        # new_tail.next = None
-        
-        # return new_head
