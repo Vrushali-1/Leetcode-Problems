@@ -26,5 +26,5 @@ class Solution:
                 current = current.next
                 prev.next = current
                 even.next = None
-        prev.next = evenHead.next if evenHead else None
+        prev.next = evenHead.next
         return head
