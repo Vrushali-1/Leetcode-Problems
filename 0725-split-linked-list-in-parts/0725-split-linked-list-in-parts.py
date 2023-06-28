@@ -6,7 +6,6 @@
 class Solution:
     def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
         current = head
-        sentinel = ListNode(0,head)
         n = 0
         answer = []
         while current:
@@ -15,7 +14,6 @@ class Solution:
         
         minimumNodes = n//k
         remainingGroups = n%k
-        print(n,remainingGroups,minimumNodes)
         for i in range(k):
             current = newHead = ListNode(0,None)
             count = 0
