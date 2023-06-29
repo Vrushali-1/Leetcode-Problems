@@ -2,15 +2,10 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         index = 0
         answer = []
-        words = collections.Counter()
+        words = defaultdict(list)
 
         for word in strs:
-            s = ''.join(sorted(word))
+            key = ''.join(sorted(word))
+            words[key].append(word)
 
-            if s in words:
-                answer[words[s]].append(word)
-            else:
-                words[s] = index
-                index += 1
-                answer.append([word])
-        return answer
+        return words.values()
