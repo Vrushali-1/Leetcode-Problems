@@ -1,11 +1,17 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        index = 0
+        words = defaultdict(int)
         answer = []
-        words = defaultdict(list)
+        index = 0
 
-        for word in strs:
-            key = ''.join(sorted(word))
-            words[key].append(word)
-
-        return words.values()
+        for i in range(len(strs)):
+            temp = ''.join(sorted(strs[i]))
+            if temp not in words:
+                words[temp] = index
+                index += 1
+                answer.append([strs[i]])
+            else:
+                answer[words[temp]].append(strs[i])
+        
+        return answer
+            
