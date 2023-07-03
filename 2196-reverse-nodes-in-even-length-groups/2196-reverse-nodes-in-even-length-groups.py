@@ -6,44 +6,40 @@
 class Solution:
     def reverseEvenLengthGroups(self, head: Optional[ListNode]) -> Optional[ListNode]:
         
+        nodes = 0
+        group = 2
+
         current = head.next
-        prev = head
-        temp = head.next
+        con = head
         tail = head.next
+        pointer = head.next
 
-        groupCount = 2
-        nodeCount = 0
-
-        if not head or not head.next:
-            return head
-        
         while current:
-        
-            while(current and nodeCount < groupCount):
-                current = current.next
-                nodeCount += 1
-            print(nodeCount)
-            if(nodeCount%2 ==0):
-                before = None
-                while(nodeCount!=0):
-                    node = temp.next
-                    temp.next = before
-                    before = temp
-                    temp = node
-                    nodeCount -= 1
-                prev.next = before
-                tail.next = temp
-                prev = tail
-                tail = temp
-            else:
-                while(nodeCount!=0):
-                    temp = temp.next
-                    prev = prev.next
-                    nodeCount -= 1
-                tail= temp
 
-            groupCount += 1
+            while nodes < group and current:
+                current = current.next
+                nodes += 1
+            
+            prev = None
+            
+            if nodes%2 == 0:
+                while nodes != 0 and pointer:
+                    temp = pointer.next
+                    pointer.next = prev
+                    prev = pointer
+                    pointer = temp
+                    nodes -= 1
+                con.next = prev
+                tail.next = pointer
+                con = tail
+                tail = pointer
+            else:
+                while nodes != 0 and pointer:
+                    pointer = pointer.next
+                    con = con.next
+                    nodes -= 1
+            tail = pointer
+            group += 1
 
         return head
-            
 
