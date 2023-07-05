@@ -11,7 +11,7 @@ class MinStack:
             self.minimum.append(val)
 
     def pop(self) -> None:
-        if self.stack[-1] == self.minimum[-1] and self.minimum :
+        if self.stack[-1] == self.minimum[-1]:
             self.minimum.pop()
         self.stack.pop()
 
