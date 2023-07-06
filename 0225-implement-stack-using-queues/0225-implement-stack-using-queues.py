@@ -2,18 +2,16 @@ class MyStack:
 
     def __init__(self):
         self.main = collections.deque()
-        self.second = collections.deque()
-        
 
     def push(self, x: int) -> None:
-        self.main.append(x)
-        
+        self.main.append(x)   
 
     def pop(self) -> int:
+        second = collections.deque()
         while len(self.main) > 1:
-            self.second.append(self.main.popleft())
+            second.append(self.main.popleft())
         top = self.main.popleft()
-        self.main, self.second = self.second, self.main
+        self.main = second
         return top
         
 
@@ -22,7 +20,7 @@ class MyStack:
         
 
     def empty(self) -> bool:
-        return not self.main and not self.second
+        return not self.main
         
 
 
