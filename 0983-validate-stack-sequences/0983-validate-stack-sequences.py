@@ -7,8 +7,4 @@ class Solution:
             while stack and stack[-1]== popped[popIndex]:
                 stack.pop()
                 popIndex += 1
-        while stack and stack[-1] == popped[popIndex]:
-                stack.pop()
-                popIndex += 1
-        
         return not stack
