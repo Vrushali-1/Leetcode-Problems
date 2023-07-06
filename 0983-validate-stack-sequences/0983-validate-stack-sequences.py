@@ -4,13 +4,9 @@ class Solution:
         popIndex = 0
         for num in pushed:
             stack.append(num)
-            
-            print(stack[-1])
-            print(popped[popIndex])
             while stack and stack[-1]== popped[popIndex]:
                 stack.pop()
                 popIndex += 1
-        print(stack)
         while stack and stack[-1] == popped[popIndex]:
                 stack.pop()
                 popIndex += 1
