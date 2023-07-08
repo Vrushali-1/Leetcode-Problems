@@ -11,8 +11,6 @@ class Solution:
             while counts[nums[right]] > 1:
                 current -= nums[left]
                 counts[nums[left]] -= 1
-                if counts[nums[left]] == 0:
-                    del counts[nums[left]]
                 left += 1
             
             answer = max(current,answer)
