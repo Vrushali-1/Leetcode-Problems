@@ -1,11 +1,11 @@
 class Solution:
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
-        count = defaultdict(int)
-        count[0] = 1
-        current = answer = 0
+        counts = defaultdict(int)
+        answer = current = 0
+        counts[0] = 1
 
-        for num in nums:
-            current+= num%2
-            answer += count[current-k]
-            count[current] += 1
-        return answer 
+        for i in range(len(nums)):
+            current += nums[i] % 2
+            answer += counts[current - k]
+            counts[current] += 1
+        return answer
