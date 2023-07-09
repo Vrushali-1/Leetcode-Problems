@@ -4,7 +4,7 @@ class Solution:
 
         pair = [[p,s] for p,s in zip(position,speed)]
 
-        for i,c in sorted((pair))[::-1]:
+        for i,c in sorted(pair)[::-1]:
             distance = target - i
             time = distance/c
             if stack and time <= stack[-1]:
