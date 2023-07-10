@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        def getSum(root: Optional[TreeNode],current: int) -> bool:
+        def getSum(root,current):
             if root is None:
                 return False
             
