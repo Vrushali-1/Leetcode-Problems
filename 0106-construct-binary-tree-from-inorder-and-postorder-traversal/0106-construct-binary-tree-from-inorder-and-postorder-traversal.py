@@ -18,4 +18,4 @@ class Solution:
             root.left = helper(left,idx - 1)
 
             return root
-        return helper(0,len(inorder) - 1)
+        return helper(0,len(postorder) - 1)
