@@ -13,7 +13,7 @@ class Solution:
             length = len(queue)
             current = 0
 
-            for i in range(length):
+            for _ in range(length):
                 node = queue.popleft()
                 current += node.val
 
