@@ -14,8 +14,10 @@ class Solution:
             root = TreeNode(val)
             idx = inorder.index(val)
 
+            
             root.right = helper(idx+1,right)
             root.left = helper(left,idx - 1)
+            
 
             return root
         return helper(0,len(postorder) - 1)
