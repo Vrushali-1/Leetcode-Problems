@@ -5,9 +5,11 @@ class Solution:
         minheap = [[sequence[0],index] for index,sequence in enumerate(nums)]
         answer = []
 
-        currentMin = min(pair[0] for pair in minheap)
+        #currentMin = min(pair[0] for pair in minheap)
         currentMax = max(pair[0] for pair in minheap)
-
+        heapq.heapify(minheap)
+        currentMin = minheap[0][0]
+        
         answer = [currentMin,currentMax]
 
         if currentMin == currentMax:
