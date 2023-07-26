@@ -18,8 +18,7 @@ class Solution:
         for i in range(k//2):
             heapq.heappush(minheap, -heapq.heappop(maxheap))
         
-        median = self.getMedian(maxheap,minheap,k)
-        answer.append(median)
+        answer.append(self.getMedian(maxheap,minheap,k))
         
         for i in range(k,len(nums)):
             outgoing = nums[i-k]
@@ -47,14 +46,8 @@ class Solution:
             while minheap and counts[minheap[0]] > 0:
                 counts[minheap[0]] -=1
                 heapq.heappop(minheap)   
-            
-            if k % 2 == 1:
-                answer.append(-maxheap[0])
-            else:
-                answer.append((-maxheap[0] + minheap[0]) / 2)
 
-            # median = self.getMedian(maxheap,minheap,k)
-            # answer.append(median)
+            answer.append(self.getMedian(maxheap,minheap,k))
         return answer
             
             
