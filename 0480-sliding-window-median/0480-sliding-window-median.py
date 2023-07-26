@@ -12,19 +12,11 @@ class Solution:
         maxheap = []
         minheap = []
 
-        # for i in range(k):
-        #     heapq.heappush(maxheap,-nums[i])
-        
-        # for i in range(k//2):
-        #     heapq.heappush(minheap, -heapq.heappop(maxheap))
-
         for i in range(k):
-            heapq.heappush(maxheap, -nums[i])
+            heapq.heappush(maxheap,-nums[i])
+        
+        for i in range(k//2):
             heapq.heappush(minheap, -heapq.heappop(maxheap))
-            if len(minheap) > len(maxheap):
-                heapq.heappush(maxheap, -heapq.heappop(minheap))
-
-
         
         median = self.getMedian(maxheap,minheap,k)
         answer.append(median)
