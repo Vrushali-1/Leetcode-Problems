@@ -36,7 +36,7 @@ class Solution:
             balance = -1 if outgoing <= -maxheap[0] else 1
             counts[outgoing] += 1
 
-            if incoming <= median:
+            if incoming <= -maxheap[0]:
                 heapq.heappush(maxheap, -incoming)
                 balance += 1
             else:
