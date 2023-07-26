@@ -33,7 +33,7 @@ class Solution:
             outgoing = nums[i-k]
             incoming = nums[i]
 
-            balance = -1 if outgoing <= median else 1
+            balance = -1 if outgoing <= -maxheap[0] else 1
             counts[outgoing] += 1
 
             if incoming <= median:
