@@ -45,9 +45,9 @@ class Solution:
             
             while minheap and counts[minheap[0]] > 0:
                 counts[minheap[0]] -=1
-                heapq.heappop(minheap)   
-
+                heapq.heappop(minheap)  
             answer.append(self.getMedian(maxheap,minheap,k))
+    
         return answer
             
             
