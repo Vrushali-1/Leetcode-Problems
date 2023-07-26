@@ -8,7 +8,7 @@ class Solution:
 
     def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
         answer = []
-        counts = defaultdict(int)
+        counts = collections.Counter()
         maxheap = []
         minheap = []
 
