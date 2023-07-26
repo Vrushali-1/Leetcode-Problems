@@ -48,9 +48,13 @@ class Solution:
                 counts[minheap[0]] -=1
                 heapq.heappop(minheap)   
             
-            
-            median = self.getMedian(maxheap,minheap,k)
-            answer.append(median)
+            if k % 2 == 1:
+                answer.append(-maxheap[0])
+            else:
+                answer.append((-maxheap[0] + minheap[0]) / 2)
+
+            # median = self.getMedian(maxheap,minheap,k)
+            # answer.append(median)
         return answer
             
             
