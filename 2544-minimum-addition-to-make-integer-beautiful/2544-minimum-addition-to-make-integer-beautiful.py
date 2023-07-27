@@ -1,14 +1,17 @@
 class Solution:
     def makeIntegerBeautiful(self, n: int, target: int) -> int:
-        def digits(n: int):
-            while n > 0:
-                yield n % 10
-                n //= 10
-
-        multiplier = 1
-        min_add = 0
-        while sum(digits(n + min_add)) > target:
-            multiplier *= 10
-            min_add = multiplier - n % multiplier
+        def helper(num):
+            total = 0
+            while num > 0:
+                total += num % 10
+                num //= 10
+            return total
         
-        return min_add
+        result = 0
+        base = 1
+
+        while helper(n + result) > target:
+            base *= 10
+            result = base - (n % base)
+        return result
+
