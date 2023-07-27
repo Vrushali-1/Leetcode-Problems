@@ -14,7 +14,7 @@ class Solution:
         if currentMin == currentMax:
             return answer
         
-        heapq.heapify(minheap)
+        #heapq.heapify(minheap)
 
         while True:
             _,index = heapq.heappop(minheap)
