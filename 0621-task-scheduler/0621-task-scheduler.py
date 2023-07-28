@@ -5,7 +5,7 @@ class Solution:
         for task in tasks:
             index = ord(task) - ord('A')
             counts[index] += 1
-        
+ 
         counts.sort()
 
         maximum = counts.pop()
