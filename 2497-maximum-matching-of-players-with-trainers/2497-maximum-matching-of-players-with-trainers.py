@@ -3,10 +3,8 @@ class Solution:
         players.sort(reverse = True)
         trainers.sort(reverse = True)
 
-        i = 0
-        j = 0
-        matching = 0
-
+        i,j, matching = 0, 0, 0
+       
         while i<len(players) and j<len(trainers):
             if players[i] <= trainers[j]:
                 matching += 1
