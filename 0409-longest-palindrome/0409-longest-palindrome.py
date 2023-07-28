@@ -4,7 +4,7 @@ class Solution:
         odd = 0
         result = 0
 
-        for key,freq in counts.items():
+        for freq in counts.values():
             if freq % 2 == 0:
                 result += freq
             else:
