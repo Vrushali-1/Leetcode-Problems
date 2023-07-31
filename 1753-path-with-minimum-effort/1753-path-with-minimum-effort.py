@@ -24,28 +24,16 @@ class Solution:
             return False
         
 
-        # m, n = len(heights), len(heights[0])
-        # left = 0
-        # right = max(max(row) for row in heights)
-
-        # while left <= right:
-        #     mid = (left + right) // 2
-
-        #     if check(mid):
-        #         right = mid - 1
-        #     else:
-        #         left = left + 1
-        # return 
-        
-        m = len(heights)
-        n = len(heights[0])
+        m, n = len(heights), len(heights[0])
         left = 0
         right = max(max(row) for row in heights)
+
         while left <= right:
             mid = (left + right) // 2
+
             if check(mid):
                 right = mid - 1
             else:
                 left = mid + 1
-        
         return left
+        
