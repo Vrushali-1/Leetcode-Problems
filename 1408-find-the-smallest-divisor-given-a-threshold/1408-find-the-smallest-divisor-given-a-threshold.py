@@ -8,14 +8,13 @@ class Solution:
             return result <= threshold 
         
         left, right = 1, max(nums)
-        answer = -1
 
         while left <= right:
             mid = (left + right) // 2
 
             if check(mid):
-                answer = mid
+                #answer = mid
                 right = mid - 1
             else:
                 left = mid + 1
-        return answer
+        return left
