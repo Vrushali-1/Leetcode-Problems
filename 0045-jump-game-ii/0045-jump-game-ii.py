@@ -1,9 +1,6 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        l = 0
-        r = 0
-
-        jump = 0
+        l, r, jump = 0, 0, 0
 
         while r < (len(nums) - 1):
             maxJump = 0
