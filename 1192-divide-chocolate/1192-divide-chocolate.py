@@ -20,7 +20,7 @@ class Solution:
                 left = mid
             else:
                 right = mid - 1
-        return left
+        return right
 
 
         
