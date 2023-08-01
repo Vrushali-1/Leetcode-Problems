@@ -3,7 +3,7 @@ class Solution:
         low, high = 0, len(nums) - 1
 
         while low < high:
-            mid = low + (high - low) // 2
+            mid = (low + high )// 2
             if mid % 2 == 1:
                 mid -= 1
             if nums[mid] == nums[mid + 1]:
