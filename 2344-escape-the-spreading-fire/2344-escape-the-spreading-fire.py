@@ -1,7 +1,7 @@
 class Solution:
 	def maximumMinutes(self, grid):
 		m, n = len(grid), len(grid[0])
-		queue, fireReached = [], [[float("inf")] * n for _ in range(m)]
+		queue, fireReached = collections.deque(), [[float("inf")] * n for _ in range(m)]
 		directions = [(1,0),(0,1),(-1,0),(0,-1)]
 
 		def isValid(row,col):
@@ -14,7 +14,7 @@ class Solution:
 					fireReached[i][j] = 0
 		
 		while queue:
-			row,col,time = queue.pop(0)
+			row,col,time = queue.popleft()
 
 			for dx, dy in directions:
 				x,y = row + dy, col + dx
@@ -24,10 +24,10 @@ class Solution:
 					queue.append((x,y,time + 1))
 		
 		def check(time):
-			queue, visited = [(0,0,time)], [[0] * n for _ in range(m)]
+			queue, visited = collections.deque([(0,0,time)]), [[0] * n for _ in range(m)]
 
 			while queue:
-				row,col,t = queue.pop(0)
+				row,col,t = queue.popleft()
 
 				for dx,dy in directions:
 					x,y = row + dy, col + dx
