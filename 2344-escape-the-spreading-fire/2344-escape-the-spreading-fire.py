@@ -1,58 +1,51 @@
 class Solution:
-    def maximumMinutes(self, grid):
-        m,n = len(grid),len(grid[0])
+	def maximumMinutes(self, grid):
+		m, n = len(grid), len(grid[0])
+		queue, fireReached = [], [[float("inf")] * n for _ in range(m)]
+		directions = [(1,0),(0,1),(-1,0),(0,-1)]
 
-        fires, dist = [], [[float("inf")]*n for _ in range(m)]
+		def isValid(row,col):
+			return 0 <= row < m and 0 <= col < n and grid[row][col] == 0
 
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == 1:
-                    fires.append((i,j,0))
-                    dist[i][j] = 0
+		for i in range(m):
+			for j in range(n):
+				if grid[i][j] == 1:
+					queue.append((i,j,0))
+					fireReached[i][j] = 0
+		
+		while queue:
+			row,col,time = queue.pop(0)
 
-        while fires:
-            x,y,t = fires.pop(0)
+			for dx, dy in [(row - 1,col),(row + 1,col),(row,col-1),(row,col+1)]:
+				#nextRow, nextCol = row + dy, col + dx
 
-            for nx,ny in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
-                if 0 <= nx <= m-1 and 0 <= ny <= n-1 and grid[nx][ny] == 0 and dist[nx][ny] > t+1:
-                    dist[nx][ny] = t+1
-                    fires.append((nx,ny,t+1))
+				if isValid(dx,dy) and fireReached[dx][dy] > time + 1:
+					fireReached[dx][dy] = time + 1
+					queue.append((dx,dy,time + 1))
+		
+		def check(time):
+			queue, visited = [(0,0,time)], [[0] * n for _ in range(m)]
 
-        def is_possible(t): 
-            stack, visited = [(0,0,t)], [[0]*n for _ in range(m)]
+			while queue:
+				row,col,t = queue.pop(0)
 
-            while stack:
-                x,y,val = stack.pop(0)
+				for dx,dy in [(row - 1,col),(row + 1,col),(row,col-1),(row,col+1)]:
+					#nextRow, nextCol = row + dy, col + dx
 
-                for nx,ny in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
-                    if nx == m-1 and ny == n-1 and val+1 <= dist[nx][ny]:
-                        return True
+					if dx == m - 1 and dy == n - 1 and t + 1 <= fireReached[dx][dy]:
+						return True
+					
+					if isValid(dx,dy) and visited[dx][dy] == 0 and t+1 < fireReached[dx][dy]:
+						queue.append((dx,dy,t+1))
+						visited[dx][dy] = 1
+			return False
+		
+		low,high = 0, 10 ** 9
 
-                    if 0 <= nx <= m-1 and 0 <= ny <= n-1 and grid[nx][ny] == 0 and visited[nx][ny] == 0 and val+1 < dist[nx][ny]:
-                        stack.append((nx,ny,val+1))
-                        visited[nx][ny] = 1
-
-            return False
-
-        low, high = 0, 10**9
-
-        while low <= high:
-            mid = (low+high)//2
-
-            if is_possible(mid):
-                low = mid + 1
-            else:
-                high = mid - 1
-
-        return high
-
-
-
-
-
-
-
-
-
-
-        
+		while low <= high:
+			mid = (low + high) // 2
+			if check(mid):
+				low = mid + 1
+			else:
+				high = mid - 1
+		return high
