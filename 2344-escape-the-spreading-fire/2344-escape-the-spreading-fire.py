@@ -16,12 +16,12 @@ class Solution:
 		while queue:
 			row,col,time = queue.pop(0)
 
-			for dx, dy in [(row - 1,col),(row + 1,col),(row,col-1),(row,col+1)]:
-				#nextRow, nextCol = row + dy, col + dx
+			for dx, dy in directions:
+				x,y = row + dy, col + dx
 
-				if isValid(dx,dy) and fireReached[dx][dy] > time + 1:
-					fireReached[dx][dy] = time + 1
-					queue.append((dx,dy,time + 1))
+				if isValid(x,y) and fireReached[x][y] > time + 1:
+					fireReached[x][y] = time + 1
+					queue.append((x,y,time + 1))
 		
 		def check(time):
 			queue, visited = [(0,0,time)], [[0] * n for _ in range(m)]
@@ -29,15 +29,15 @@ class Solution:
 			while queue:
 				row,col,t = queue.pop(0)
 
-				for dx,dy in [(row - 1,col),(row + 1,col),(row,col-1),(row,col+1)]:
-					#nextRow, nextCol = row + dy, col + dx
+				for dx,dy in directions:
+					x,y = row + dy, col + dx
 
-					if dx == m - 1 and dy == n - 1 and t + 1 <= fireReached[dx][dy]:
+					if x == m - 1 and y == n - 1 and t + 1 <= fireReached[x][y]:
 						return True
 					
-					if isValid(dx,dy) and visited[dx][dy] == 0 and t+1 < fireReached[dx][dy]:
-						queue.append((dx,dy,t+1))
-						visited[dx][dy] = 1
+					if isValid(x,y) and visited[x][y] == 0 and t+1 < fireReached[x][y]:
+						queue.append((x,y,t+1))
+						visited[x][y] = 1
 			return False
 		
 		low,high = 0, 10 ** 9
