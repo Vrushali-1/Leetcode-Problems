@@ -1,48 +1,58 @@
 class Solution:
-    def maximumMinutes(self, grid: List[List[int]]) -> int:
-        R, C = len(grid), len(grid[0])
-        lo = 0
-        hi = 1000000000
-        fire = [[float('inf')] * C for _ in range(R)]
-        q = deque()
-        for r in range(R):
-            for c in range(C):
-                if grid[r][c] == 1:
-                    fire[r][c] = 0
-                    q.appendleft((r, c))
-        step = 0
-        while q:
-            nq = deque()
-            while q:
-                r, c = q.pop() 
-                for dr, dc in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
-                    rr, cc = r + dr, c + dc
-                    if 0 <= rr < R and 0 <= cc < C and grid[rr][cc] == 0 and fire[rr][cc] == float('inf'):
-                        nq.appendleft((rr, cc))
-                        fire[rr][cc] = min(fire[rr][cc], step + 1)
-            step += 1
-            q = nq
-        def check(mid):
-            q = deque([(0, 0)])
-            v = {(0, 0): mid} 
-            while q:
-                r, c = q.pop()
-                step = v[r, c] 
-                if r == R - 1 and c == C - 1:
-                    return True
-                for dr, dc in  [[0, 1], [0, -1], [1, 0], [-1, 0]]:
-                    rr, cc = dr + r, c + dc
-                    if 0 <= rr < R and 0 <= cc < C and grid[rr][cc] == 0 and (rr, cc) not in v and \
-                        (step + 1 < fire[rr][cc] or (rr, cc) == (R - 1, C - 1) and step + 1 <= fire[rr][cc] ):
-                        q.appendleft((rr, cc))
-                        v[rr, cc] = step + 1
+    def maximumMinutes(self, grid):
+        m,n = len(grid),len(grid[0])
+
+        fires, dist = [], [[float("inf")]*n for _ in range(m)]
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    fires.append((i,j,0))
+                    dist[i][j] = 0
+
+        while fires:
+            x,y,t = fires.pop(0)
+
+            for nx,ny in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
+                if 0 <= nx <= m-1 and 0 <= ny <= n-1 and grid[nx][ny] == 0 and dist[nx][ny] > t+1:
+                    dist[nx][ny] = t+1
+                    fires.append((nx,ny,t+1))
+
+        def is_possible(t): 
+            stack, visited = [(0,0,t)], [[0]*n for _ in range(m)]
+
+            while stack:
+                x,y,val = stack.pop(0)
+
+                for nx,ny in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)]:
+                    if nx == m-1 and ny == n-1 and val+1 <= dist[nx][ny]:
+                        return True
+
+                    if 0 <= nx <= m-1 and 0 <= ny <= n-1 and grid[nx][ny] == 0 and visited[nx][ny] == 0 and val+1 < dist[nx][ny]:
+                        stack.append((nx,ny,val+1))
+                        visited[nx][ny] = 1
+
             return False
-        while lo < hi:
-            mid = (lo + hi + 1) // 2
-            if check(mid):
-                lo = mid
+
+        low, high = 0, 10**9
+
+        while low <= high:
+            mid = (low+high)//2
+
+            if is_possible(mid):
+                low = mid + 1
             else:
-                hi = mid - 1
-        if check(lo):
-            return lo 
-        return -1
+                high = mid - 1
+
+        return high
+
+
+
+
+
+
+
+
+
+
+        
