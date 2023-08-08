@@ -1,6 +1,8 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         def backtrack(curr,start):
+            if start > len(nums):
+                return
             answer.append(curr[:])
     
             for i in range(start,len(nums)):
