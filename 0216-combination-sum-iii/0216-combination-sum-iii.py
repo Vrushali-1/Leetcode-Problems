@@ -8,11 +8,11 @@ class Solution:
             if remaining < 0 or len(combination) == k:
                 return
             
-            for digit in range(start,9):
-                combination.append(digit + 1)
-                backtrack(remaining - digit - 1, combination, digit + 1 )
+            for digit in range(start,10):
+                combination.append(digit)
+                backtrack(remaining - digit, combination, digit + 1 )
                 combination.pop()
         
         answer = []
-        backtrack(n,[],0)
+        backtrack(n,[],1)
         return answer
