@@ -18,7 +18,7 @@ class Solution:
 
             for i in range(length):
                 node = queue.popleft()
-                if node: current.append(node.val)
+                current.append(node.val)
                 if node.left: queue.append(node.left)
                 if node.right: queue.append(node.right)
             
