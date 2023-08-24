@@ -1,6 +1,6 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        def dfs(rem, memo):
+        def dfs(rem):
             if rem < 0:
                 return -1
             if rem == 0:
@@ -10,7 +10,7 @@ class Solution:
             
             min_cost = float('inf')
             for coin in coins:
-                res = dfs(rem - coin, memo)
+                res = dfs(rem - coin)
                 if res != -1:
                     min_cost = min(min_cost, res + 1)
             
@@ -18,4 +18,4 @@ class Solution:
             return memo[rem]
         
         memo = [-2] * (amount + 1)
-        return dfs(amount, memo)
+        return dfs(amount)
