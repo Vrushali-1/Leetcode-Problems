@@ -27,6 +27,6 @@ class Solution:
                 board[row][col] = "."
         
         answer = []
-        empty_board = [["."] * n for _ in range(n)]
+        empty_board = [['.' for _ in range(n)] for _ in range(n)]
         backtrack(0,set(),set(),set(),empty_board)
         return answer
