@@ -19,7 +19,6 @@ class Solution:
             
             while (matchCounter == unique):
                 if right - left + 1 < finalLength:
-                    print('inside less length',right - left + 1)
                     finalLength = right - left + 1
                     finalLeft = left
                     finalRight = right
