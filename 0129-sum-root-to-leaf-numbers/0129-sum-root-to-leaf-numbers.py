@@ -6,36 +6,35 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        number = 0 #path number
-        answer = 0 #addition 
+        pathNumber = finalAddition = 0
+
+        if not root:
+            return 0
 
         while root:
-
             if root.left:
-
                 previous = root.left
                 step = 1
-                while previous.right and previous.right is not root:
+                while previous.right and previous.right != root:
                     previous = previous.right
                     step += 1
                 
                 if not previous.right:
+                    pathNumber = pathNumber * 10 + root.val
                     previous.right = root
-                    number = number * 10 + root.val
                     root = root.left
                 else:
                     if not previous.left:
-                        answer += number
-                    for i in range(step):
-                        number //= 10
-                    previous.right = None
+                        finalAddition += pathNumber
+                    for _ in range(step):
+                        pathNumber //= 10
                     root = root.right
+                    previous.right = None
             
             else:
-                number = number * 10 + root.val
-                if not root.right:
-                    answer += number
+                pathNumber = pathNumber * 10 + root.val
+                if not root.left and not root.right:
+                    finalAddition += pathNumber
                 root = root.right
-        return answer
-             
-
+        return finalAddition
+        
