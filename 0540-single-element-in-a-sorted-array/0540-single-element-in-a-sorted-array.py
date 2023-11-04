@@ -10,4 +10,4 @@ class Solution:
                 low = mid + 2
             else:
                 high = mid
-        return nums[high]
+        return nums[low]
